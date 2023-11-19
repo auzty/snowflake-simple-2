@@ -48,7 +48,7 @@ jobs:
           runtime_version = '\''3.8'\''
           packages = ('\''snowflake-snowpark-python'\'')
           imports = ('\''@~/${{ github.ref_name }}/storedproc.py'\'')
-          handler = '\''storedproc.py'\'';'
+          handler = '\''storedproc.run'\'';'
 #      - name: Create or update storedproc
 #        run: |
 #          ~/bin/snowsql -q 'CREATE OR REPLACE PROCEDURE multiply_integer_by_three(INPUT_INT int)
