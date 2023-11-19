@@ -1,3 +1,3 @@
 # storedproc.py file
-def run(message):    
-  return "hello world, v1";
+def plus_by_one(snowpark_session, input_int_py: int):
+    return input_int_py+1
