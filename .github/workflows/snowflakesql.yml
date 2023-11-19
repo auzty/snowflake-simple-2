@@ -45,7 +45,7 @@ jobs:
           ~/bin/snowsql -q 'CREATE OR REPLACE PROCEDURE multiply_integer_by_three(INPUT_INT int)
             returns int not null
             language python
-            runtime_version = \'3.8\'
+            runtime_version = '\''3.8'\''
             packages = ('\''snowflake-snowpark-python'\'')
             handler = '\''multiply_by_three_py'\''
           as
