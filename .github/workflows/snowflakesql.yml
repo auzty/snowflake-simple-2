@@ -36,19 +36,22 @@ jobs:
         run: |
           curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.9-linux_x86_64.bash
           SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.9-linux_x86_64.bash
-      # Runs a single command using the runners shell
-      - name: Upload artifact to SnowSQL
-        run: |
-          ~/bin/snowsql -q 'put file://'$(pwd)'/storedproc.py @~/${{ github.ref_name }} overwrite=true' -o friendly=false
       - name: create store proc from file
         run: |
-          ~/bin/snowsql -q 'CREATE OR REPLACE PROCEDURE plus_by_one(INPUT_INT int)
-          returns int not null
-          language python
-          runtime_version = '\''3.8'\''
-          packages = ('\''snowflake-snowpark-python'\'')
-          imports = ('\''@~/${{ github.ref_name }}/storedproc.py'\'')
-          handler = '\''storedproc.run'\'';'
+          ~/bin/snowsql -q 'insert into testname values("namefirst")'
+      # Runs a single command using the runners shell
+#      - name: Upload artifact to SnowSQL
+#        run: |
+#          ~/bin/snowsql -q 'put file://'$(pwd)'/storedproc.py @~/${{ github.ref_name }} overwrite=true' -o friendly=false
+#      - name: create store proc from file
+#        run: |
+#          ~/bin/snowsql -q 'CREATE OR REPLACE PROCEDURE plus_by_one(INPUT_INT int)
+#          returns int not null
+#          language python
+#          runtime_version = '\''3.8'\''
+#          packages = ('\''snowflake-snowpark-python'\'')
+#          imports = ('\''@~/${{ github.ref_name }}/storedproc.py'\'')
+#          handler = '\''storedproc.run'\'';'
 #      - name: Create or update storedproc
 #        run: |
 #          ~/bin/snowsql -q 'CREATE OR REPLACE PROCEDURE multiply_integer_by_three(INPUT_INT int)
