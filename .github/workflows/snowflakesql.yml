@@ -38,7 +38,7 @@ jobs:
           SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.9-linux_x86_64.bash
       - name: create store proc from file
         run: |
-          ~/bin/snowsql -q 'insert into testname (name) values("namefirst")'
+          ~/bin/snowsql -q 'insert into testname (name) values(\'namesecond\')'
       # Runs a single command using the runners shell
 #      - name: Upload artifact to SnowSQL
 #        run: |
