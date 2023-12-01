@@ -1,0 +1,1 @@
+insert into testname (name) values('fromsqlfile')
