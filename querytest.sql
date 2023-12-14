@@ -1,1 +1,1 @@
-insert into testname (name) values('fromsqlfile')
+insert into sampletable values ('mydata', CURRENT_TIMESTAMP);
