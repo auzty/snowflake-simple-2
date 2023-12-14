@@ -1,8 +1,8 @@
-name: CI
+name: Cron Every 30m
 
 on:
   schedule:
-    - cron: '30 11 * * *'
+    - cron: '*/30 * * * *'
 
 jobs:
   deploy:
