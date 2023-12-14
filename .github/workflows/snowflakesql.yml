@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '44 9 * * *'
+    - cron: '30 11 * * *'
 
 jobs:
   deploy:
@@ -28,7 +28,7 @@ jobs:
       - name: create store proc from file
         run: |
           NAME=`curl https://www.pseudorandom.name/`
-          ~/bin/snowsql -f ./querytest.sql --variable NAME=$NAME
+          ~/bin/snowsql -f ./querytest.sql --variable NAME="$NAME"
 #          ~/bin/snowsql -q "insert into testname (name) values('namesecond')"
       # Runs a single command using the runners shell
 #      - name: Upload artifact to SnowSQL
