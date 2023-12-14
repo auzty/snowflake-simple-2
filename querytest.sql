@@ -1,1 +1,2 @@
-insert into sampletable values ('mydata', CURRENT_TIMESTAMP);
+!set variable_substitution=true;
+insert into sampletable values ('&{NAME}', CURRENT_TIMESTAMP);
