@@ -2,14 +2,16 @@ name: Cron Every 30m
 
 on:
   schedule:
-    - cron: '*/30 1 * * *'
-
+    #- cron: '*/30 1 * * *'
+    - cron: '0 5 * * *' # cron link https://crontab.guru/
+    
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted #run on self hosted installed runner (actions/checkout@v3)
+    #the options are "self-hosted" or "ubuntu-latest"
 
     env:
-      SNOWSQL_PWD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWSQL_PWD: ${{ secrets.SNOWFLAKE_PASSWORD }} #settings --> secrets and variables --> actions ---> Repository secrets
       SNOWSQL_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
       SNOWSQL_USER: ${{ secrets.SNOWFLAKE_USERNAME }}
       SNOWSQL_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
@@ -19,12 +21,13 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 #copy
 
       - name: Install SnowSQL
         run: |
           curl -O https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/1.2/linux_x86_64/snowsql-1.2.9-linux_x86_64.bash
-          SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.9-linux_x86_64.bash
+          SNOWSQL_DEST=~/bin SNOWSQL_LOGIN_SHELL=~/.profile bash snowsql-1.2.9-linux_x86_64.bash 
+          # https://medium.com/snowflake/deploy-snowflake-code-with-github-actions-abc6b707216d
       - name: create store proc from file
         run: |
           NAME=`curl https://www.pseudorandom.name/`
